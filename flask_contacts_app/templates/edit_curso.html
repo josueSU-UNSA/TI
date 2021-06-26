@@ -1,0 +1,14 @@
+<form action="/update/{{horario.0}}" method="POST"><!--Enviaremos los datos a la ruta add contact-->
+    <input type="text" name="curso" placeholder="curso" value="{{horario.1}}">
+    <input type="text" name="dia" placeholder="dia" value="{{horario.2}}">
+    <input type="time" name="hora_inicio" placeholder="hora_inicio" value="{{horario.3}}">
+    <input type="time" name="hora_final" placeholder="hora_final" value="{{horario.4}}">
+    
+    <input type="text" name="profesor" placeholder="profesor" value="{{horario.5}}">
+    <input type="text" name="grupo" placeholder="grupo" value="{{horario.6}}">
+    <button type="submit">
+        Save
+    </button>
+    
+
+</form>

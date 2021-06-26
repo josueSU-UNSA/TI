@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% with messages =get_flashed_messages() %}<!--mensajes posibles del servidor a traves del mensaje flash, esto se puede hacer gracias al flask-->
+{% if messages%}<!--Si hay mensajes ,messages sera un arreglo y se recorrera por el sgte for-->
+{% for message in messages %}<!--iterador message al arreglo messages, por cada recorrido mostraremos cada mensaje en un texto-->
+<p>{{message}}</p>
+{%  endfor %}
+{%  endif %}
+{%  endwith %}
+
+<!--este archivo nos permite enviar los datos para ser ingresados a la BDD-->
+<form action="/add_contact" method="POST"><!--Enviaremos los datos a la ruta add contact-->
+    <input type="text" name="curso" placeholder="curso">
+    <input type="text" name="dia" placeholder="dia">
+    <input type="time" name="hora_inicio" placeholder="hora_inicio">
+    <input type="time" name="hora_final" placeholder="hora_final">
+    
+    <input type="text" name="profesor" placeholder="profesor">
+    <input type="text" name="grupo" placeholder="grupo">
+    <button type="submit">
+        Save
+    </button>
+    
+
+</form>
+<table>
+    <thead>
+        <tr>
+            <td>curso</td>
+            <td>dia</td>
+            <td>hora_inicio</td>
+            <td>hora_final</td>
+            <td>profesor</td>
+            <td>grupo</td>
+            <!--Esta fila siguiente es para colocar los botones de eliminar-->
+            <td>Opciones</td>
+
+        </tr>
+
+    </thead>
+    <tbody><!--con tbody llenaremos los elementos que vienen de la base de datos,pero antes haremos la consulta desde el App.py-->
+        {% for horario in horarios %}
+        <tr>
+            <td>{{horario.1}}</td><!--esto me ayuda a mostrar el primer valro de la columna de cada seccion curso horario ,etc mostrandome los datos almacenados-->
+            <td>{{horario.2}}</td>
+            <td>{{horario.3}}</td>
+            <td>{{horario.4}}</td>
+            <td>{{horario.5}}</td>
+            <td>{{horario.6}}</td>
+            <td><!--estos seran botones que luciran como enlaces para editar o eliminar -->
+                <a href="/edit/{{horario.0}}">Editar</a>
+                <a href="/delete/{{horario.0}}">Eliminar</a>
+            </td>
+            <td>
+
+            </td>
+        </tr>
+        {% endfor%}
+    </tbody>
+</table>
